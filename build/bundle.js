@@ -1,46 +1,48 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
-var React = require('react');
+window.React = require('react');
 
-var boxStyle = {
-  width: '100px',
-  height: '100px'
-};
+window.Box = React.createClass({displayName: 'Box',
 
-var Box = React.createClass({displayName: 'Box',
   getInitialState: function(){
-    return {
-      value: 'X'
-    };
+    return {content: '-'};
   },
+
   handleClick: function(){
-    var oldValue = this.state.value;
-    var newValue= oldValue === 'X' ? 'O': 'X';
-    this.setState({
-      value: newValue
-    });
+    if (this.state.content !== 'X'){
+      this.setState({content:'X'});
+    } else {
+      this.setState({content:'O'});
+    }
   },
+
   render: function(){
+
     return (
-      React.createElement("button", {style: boxStyle, onClick: this.handleClick}, this.state.value)
+      React.createElement("button", {className: "box", onClick: this.handleClick}, 
+        this.state.content
+      )
     );
+
   }
+
 });
 
-var Row = React.createClass({displayName: 'Row',
+window.Row = React.createClass({displayName: 'Row',
+
   render: function(){
     return (
-      React.createElement("div", null, 
-        React.createElement(Box, null), 
-        React.createElement(Box, null), 
-        React.createElement(Box, null)
+      React.createElement("div", {className: "row"}, 
+        React.createElement(Box, {key: "0"}), 
+        React.createElement(Box, {key: "1"}), 
+        React.createElement(Box, {key: "2"})
       )
-    )
+    );
   }
-})
 
-React.render(React.createElement(Row, null), document.body)
+});
+
 },{"react":148}],2:[function(require,module,exports){
 // shim for using process in browser
 
