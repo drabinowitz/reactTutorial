@@ -1,43 +1,11 @@
 'use strict';
 
-window.React = require('react');
+var React = require('react');
 
-window.Box = React.createClass({
+var Game = require('./Game.jsx');
 
-  getInitialState: function(){
-    return {content: '-'};
-  },
+React.render(
+  <Game />,
+  document.getElementsByClassName('content')[0]
+);
 
-  handleClick: function(){
-    if (this.state.content !== 'X'){
-      this.setState({content:'X'});
-    } else {
-      this.setState({content:'O'});
-    }
-  },
-
-  render: function(){
-
-    return (
-      <button className="box" onClick={this.handleClick}>
-        {this.state.content}
-      </button>
-    );
-
-  }
-
-});
-
-window.Row = React.createClass({
-
-  render: function(){
-    return (
-      <div className="row">
-        <Box key="0"/>
-        <Box key="1"/>
-        <Box key="2"/>
-      </div>
-    );
-  }
-
-});

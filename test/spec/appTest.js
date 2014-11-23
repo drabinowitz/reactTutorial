@@ -6,7 +6,7 @@ describe('app',function(){
     beforeEach(function(){
       $('#testLand').html('');
       React.render(
-        React.createElement(Box,{key:1}),
+        React.createElement(Box),
         document.getElementById('testLand')
       );
       renderedBox = $('#testLand .box');
